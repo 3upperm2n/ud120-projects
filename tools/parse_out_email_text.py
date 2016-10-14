@@ -16,6 +16,7 @@ def parseOutText(f):
         
         """
 
+    stemmer = SnowballStemmer("english")
 
     f.seek(0)  ### go back to beginning of file (annoying)
     all_text = f.read()
@@ -33,10 +34,12 @@ def parseOutText(f):
         ### split the text string into individual words, stem each word,
         ### and append the stemmed word to words (make sure there's a single
         ### space between each stemmed word)
-        
+        words = words.split()
 
+        for i in xrange(0,len(words)):
+            words[i] = stemmer.stem(words[i])
 
-
+    words = ' '.join(words)
 
     return words
 
